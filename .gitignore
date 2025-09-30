@@ -1,0 +1,11 @@
+*.tfvars
+
+*.lock.hcl
+
+.env*
+
+.terraform
+
+*.tfstate
+
+*.backup
