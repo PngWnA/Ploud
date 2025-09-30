@@ -18,6 +18,12 @@ locals {
     "Mercury" = { role = "SolarSystem", ip = "10.24.68.2/24", gw = "10.24.0.1", vm_id = 1000001 }
     "Venus" = { role = "SolarSystem", ip = "10.24.68.3/24", gw = "10.24.0.1", vm_id = 1000002 }
     "Earth" = { role = "SolarSystem", ip = "10.24.68.4/24", gw = "10.24.0.1", vm_id = 1000003 }
+    "Mars" = { role = "SolarSystem", ip = "10.24.68.5/24", gw = "10.24.0.1", vm_id = 1000004 }
+    "Jupiter" = { role = "SolarSystem", ip = "10.24.68.6/24", gw = "10.24.0.1", vm_id = 1000005 }
+    "Saturn" = { role = "SolarSystem", ip = "10.24.68.7/24", gw = "10.24.0.1", vm_id = 1000006 }
+    "Uranus" = { role = "SolarSystem", ip = "10.24.68.8/24", gw = "10.24.0.1", vm_id = 1000007 }
+    "Neptune" = { role = "SolarSystem", ip = "10.24.68.9/24", gw = "10.24.0.1", vm_id = 1000008 }
+    "Pluto" = { role = "SolarSystem", ip = "10.24.68.10/24", gw = "10.24.0.1", vm_id = 1000009 }
   }
 }
 
@@ -35,7 +41,7 @@ resource proxmox_virtual_environment_vm vm {
   }
 
   memory {
-    dedicated = 4096
+    dedicated = 8192
   }
 
   disk {
