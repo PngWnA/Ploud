@@ -18,6 +18,10 @@ variable template_id {
     description = "The template ID of the Proxmox VE server"
     type = string
 }
+variable data_storage {
+    description = "The storage name of the Proxmox VE server"
+    type = string
+}
 variable vm_storage {
     description = "The storage name of the Proxmox VE server"
     type = string
