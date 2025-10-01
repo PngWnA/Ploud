@@ -31,7 +31,7 @@ locals {
   }
 }
 
-resource proxmox_virtual_environment_vm vm {
+resource proxmox_virtual_environment_vm cluster {
   for_each  = local.nodes
   name      = each.key
   node_name = var.pm_node
@@ -65,20 +65,17 @@ resource proxmox_virtual_environment_vm vm {
   }
 
   initialization {
-    user_data_file_id = proxmox_virtual_environment_file.control_plain_config[each.key].id
+    user_data_file_id = (
+      each.value.role == "Controller" ?
+        proxmox_virtual_environment_file.control_plain_config[each.key].id :
+        proxmox_virtual_environment_file.worker_plain_config[each.key].id
+      )
 
     ip_config {
       ipv4 {
         address = each.value.ip
         gateway = each.value.gw
       }
-    }
-
-    user_account {
-      username = "celestrial"
-      keys     = [var.ssh_pubkey]
-    }
-
-    
+    }    
   }
 }

@@ -11,41 +11,21 @@ resource proxmox_virtual_environment_file control_plain_config {
   content_type = "snippets"
   datastore_id = var.data_storage
   node_name    = var.pm_node
-
-  source_raw {
-    data = <<-EOF
-    #cloud-config
-    hostname: ${each.key}
-    timezone: Asia/Seoul
-    users:
-      - default
-      - name: celestrial
-        groups:
-          - sudo
-        shell: /bin/bash
-        ssh_authorized_keys:
-          - ${var.ssh_pubkey}
-        sudo: ALL=(ALL) NOPASSWD:ALL
-    package_update: true
-    packages:
-      - qemu-guest-agent
-      - apt-transport-https 
-      - ca-certificates 
-      - containerd
-      - curl
-      - gnupg
-    sysctl:
-      net.ipv4.ip_forward: "1"
-    runcmd:
-      - systemctl enable --now qemu-guest-agent
-      - echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-      - curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-      - apt update
-      - apt install -y kubelet kubeadm kubectl
-      - sysctl -w net.ipv4.ip_forward=1
-      - echo "done" > /tmp/cloud-config.done
-    EOF
-
+  
+  source_file {
+    path = "cloud_init/control-plain-config.yaml"
     file_name = "control-plain-config-${each.key}.yaml"
+  }
+}
+
+resource proxmox_virtual_environment_file worker_plain_config {
+  for_each     = local.nodes
+  content_type = "snippets"
+  datastore_id = var.data_storage
+  node_name    = var.pm_node
+  
+  source_file {
+    path = "cloud_init/worker-plain-config.yaml"
+    file_name = "worker-plain-config-${each.key}.yaml"
   }
 }
