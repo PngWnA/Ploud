@@ -1,4 +1,4 @@
 # Ploud
 
 # Prerequisite
-* Proxmox is installed
+* Proxmox should be installed
