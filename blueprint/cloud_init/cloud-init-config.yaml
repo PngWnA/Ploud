@@ -1,0 +1,25 @@
+#cloud-config
+  hostname: ${hostname}
+  timezone: Asia/Seoul
+  users:
+    - default
+    - name: celestrial
+      groups:
+        - sudo
+      shell: /bin/bash
+      ssh_authorized_keys:
+        - ${ssh_pubkey}
+      sudo: ALL=(ALL) NOPASSWD:ALL
+  package_update: true
+  packages:
+    - qemu-guest-agent
+    - apt-transport-https 
+    - ca-certificates 
+    - containerd
+    - curl
+    - gnupg
+  sysctls:
+    net.ipv4.ip_forward: '1'
+  runcmd:
+    - systemctl enable --now qemu-guest-agent
+    - echo "done" > /tmp/cloud-config.done
