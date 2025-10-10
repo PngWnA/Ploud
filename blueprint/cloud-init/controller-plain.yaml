@@ -18,6 +18,13 @@
     - containerd
     - curl
     - gnupg
+  write_files:
+    - path: /etc/kubernetes/kubeadm.yaml
+      content: |
+        ${indent(8, file("cloud-init/kubernetes/kubeadm.yaml"))}
+    - path: /etc/kubernetes/calico.yaml
+      content: |
+        ${indent(8, file("cloud-init/kubernetes/calico.yaml"))}
   runcmd:
     - systemctl enable --now qemu-guest-agent
     - systemctl enable --now containerd
