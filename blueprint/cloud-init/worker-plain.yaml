@@ -1,12 +1,15 @@
 #cloud-config
   hostname: ${hostname}
   timezone: Asia/Seoul
+  ssh_pwauth: true
   users:
     - default
     - name: celestrial
       groups:
         - sudo
       shell: /bin/bash
+      lock_passwd: false
+      passwd: ${vm_password}
       ssh_authorized_keys:
         - ${ssh_pubkey}
       sudo: ALL=(ALL) NOPASSWD:ALL

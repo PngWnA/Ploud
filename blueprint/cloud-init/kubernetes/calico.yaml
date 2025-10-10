@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: List
+metadata: {}
+items:
+  - apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: tigera-operator
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: tigera-operator
+      namespace: tigera-operator
+---
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  variant: Calico
+  registry: ""
+  kubernetesProvider: Kubernetes
+  cni:
+    type: Calico
+  calicoNetwork:
+    linuxDataplane: Iptables
+    ipPools:
+    - blockSize: 26
+      cidr: 192.168.0.0/16
+      encapsulation: VXLANCrossSubnet
+      natOutgoing: Enabled
+      nodeSelector: all()
+---
+apiVersion: operator.tigera.io/v1
+kind: APIServer
+metadata:
+  name: default
+spec: {}
