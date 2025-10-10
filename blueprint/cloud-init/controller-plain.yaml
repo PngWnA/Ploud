@@ -1,15 +1,12 @@
 #cloud-config
   hostname: ${hostname}
   timezone: Asia/Seoul
-  ssh_pwauth: true
   users:
     - default
     - name: celestrial
       groups:
         - sudo
       shell: /bin/bash
-      lock_passwd: false
-      passwd: ${vm_password}
       ssh_authorized_keys:
         - ${ssh_pubkey}
       sudo: ALL=(ALL) NOPASSWD:ALL
@@ -21,13 +18,6 @@
     - containerd
     - curl
     - gnupg
-  write_files:
-    - path: /etc/kubernetes/kubeadm.yaml
-      content: |
-        ${file("cloud-init/kubernetes/kubeadm.yaml")}
-    - path: /etc/kubernetes/calico.yaml
-      content: |
-        ${file("cloud-init/kubernetes/calico.yaml")}
   runcmd:
     - systemctl enable --now qemu-guest-agent
     - systemctl enable --now containerd

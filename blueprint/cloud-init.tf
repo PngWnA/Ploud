@@ -16,7 +16,6 @@ resource proxmox_virtual_environment_file controller_plain {
     data = templatefile("cloud-init/controller-plain.yaml", {
       hostname    = each.key
       ssh_pubkey  = var.ssh_pubkey
-      vm_password = var.vm_password
     })
     file_name = "controller-plain-${each.key}.yaml"
   }
@@ -32,7 +31,6 @@ resource proxmox_virtual_environment_file worker_plain {
     data = templatefile("cloud-init/worker-plain.yaml", {
       hostname    = each.key
       ssh_pubkey  = var.ssh_pubkey
-      vm_password = var.vm_password
     })
     file_name = "worker-plain-${each.key}.yaml"
   }

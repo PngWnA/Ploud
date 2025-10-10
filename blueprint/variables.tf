@@ -34,9 +34,3 @@ variable ssh_pubkey {
     description = "The SSH public key of the Proxmox VE server"
     type = string
 }
-
-variable vm_password {
-    description = "Password for the 'celestrial' user to enable SSH password login"
-    type        = string
-    sensitive   = true
-}
