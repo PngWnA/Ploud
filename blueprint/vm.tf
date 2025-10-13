@@ -35,8 +35,8 @@ resource proxmox_virtual_environment_vm cluster {
   initialization {
     user_data_file_id = (
       each.value.role == "Controller" ?
-      proxmox_virtual_environment_file.controller_plain[each.key].id :
-      proxmox_virtual_environment_file.worker_plain[each.key].id
+      proxmox_virtual_environment_file.controller_plane[each.key].id :
+      proxmox_virtual_environment_file.worker_plane[each.key].id
     )
 
     ip_config {

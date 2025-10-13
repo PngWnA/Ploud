@@ -12,6 +12,6 @@ locals {
     #"Neptune" = { role = "Worker", ip = "10.24.68.9/24", gw = "10.24.0.1", vm_id = 1000008 }
     #"Pluto" = { role = "Worker", ip = "10.24.68.10/24", gw = "10.24.0.1", vm_id = 1000009 }
   }
-  controller_plain = [for name, attrs in local.nodes : name if attrs.role == "Controller"]
-  worker_plain     = [for name, attrs in local.nodes : name if attrs.role == "Worker"]
+  controller_plane = [for name, attrs in local.nodes : name if attrs.role == "Controller"]
+  worker_plane     = [for name, attrs in local.nodes : name if attrs.role == "Worker"]
 }
