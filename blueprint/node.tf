@@ -1,4 +1,3 @@
-
 resource proxmox_virtual_environment_vm cluster {
   for_each  = local.nodes
   name      = each.key

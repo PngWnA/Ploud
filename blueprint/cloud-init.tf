@@ -13,7 +13,7 @@ resource proxmox_virtual_environment_file controller_plane {
   node_name    = var.pm_node
   
   source_raw {
-    data = templatefile("cloud-init/controller-plane.yaml", {
+    data = templatefile("node/cloud-init/controller-plane.yaml", {
       hostname    = each.key
       ssh_pubkey  = var.ssh_pubkey
     })
@@ -28,7 +28,7 @@ resource proxmox_virtual_environment_file worker_plane {
   node_name    = var.pm_node
   
   source_raw {
-    data = templatefile("cloud-init/worker-plane.yaml", {
+    data = templatefile("node/cloud-init/worker-plane.yaml", {
       hostname    = each.key
       ssh_pubkey  = var.ssh_pubkey
     })

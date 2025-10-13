@@ -19,12 +19,9 @@
     - curl
     - gnupg
   write_files:
-    - path: /etc/kubernetes/kubeadm.yaml
-      content: |
-        ${indent(8, file("cloud-init/kubernetes/kubeadm.yaml"))}
     - path: /etc/containerd/config.toml
       content: |
-        ${indent(8, file("cloud-init/containerd/config.toml"))}
+        ${indent(8, file("node/containerd/config.toml"))}
   runcmd:
     - systemctl enable --now qemu-guest-agent
     - systemctl enable --now containerd
@@ -34,6 +31,5 @@
     - apt-get update
     - apt-get install -y kubelet kubeadm kubectl
     - apt-mark hold kubelet kubeadm kubectl
-    - kubeadm config images pull --kubernetes-version v1.34.0
-    - kubeadm init --config /etc/kubernetes/kubeadm.yaml
+    - echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> /root/.bashrc
     - echo "done" > /tmp/cloud-config.done
