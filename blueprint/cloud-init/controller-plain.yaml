@@ -22,9 +22,6 @@
     - path: /etc/kubernetes/kubeadm.yaml
       content: |
         ${indent(8, file("cloud-init/kubernetes/kubeadm.yaml"))}
-    - path: /etc/kubernetes/calico.yaml
-      content: |
-        ${indent(8, file("cloud-init/kubernetes/calico.yaml"))}
     - path: /etc/containerd/config.toml
       content: |
         ${indent(8, file("cloud-init/containerd/config.toml"))}
@@ -39,6 +36,4 @@
     - apt-mark hold kubelet kubeadm kubectl
     - kubeadm config images pull --kubernetes-version v1.34.0
     - kubeadm init --config /etc/kubernetes/kubeadm.yaml
-    - kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/tigera-operator.yaml
-    - kubectl apply -f /etc/kubernetes/calico.yaml
     - echo "done" > /tmp/cloud-config.done
