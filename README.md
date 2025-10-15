@@ -2,7 +2,7 @@
 
 # Blueprint
 ```mermaid
-flowchart LR
+graph LR
   subgraph Proxmox
     subgraph Nodes [VM Nodes]
       subgraph k8s [Kubernetes Cluster]
