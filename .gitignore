@@ -23,3 +23,7 @@
 
 # Temp
 *.tmp
+
+# WireGuard
+wg0.conf
+wg0.json
