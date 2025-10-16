@@ -1,0 +1,17 @@
+services:
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy:latest
+    container_name: wg-easy
+    network_mode: host
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - WG_HOST=vpn.pngwna.net
+      - PASSWORD_HASH=${WG_WEBUI_PASSWORD_HASH}
+      - WG_PERSISTENT_KEEPALIVE=60
+      - WG_PORT=51820
+      - WG_DEFAULT_ADDRESS=10.59.254.x
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./wg-easy:/etc/wireguard

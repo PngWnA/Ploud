@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: nginx:1.28.0
+    restart: unless-stopped
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./proxy:/etc/nginx
+      - /etc/pve/nodes/polaris/pveproxy-ssl.pem:/etc/certificates/pveproxy-ssl.pem
+      - /etc/pve/nodes/polaris/pveproxy-ssl.key:/etc/certificates/pveproxy-ssl.key
+      - /etc/letsencrypt:/etc/letsencrypt
+    container_name: proxy
