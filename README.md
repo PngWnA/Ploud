@@ -7,16 +7,17 @@ graph LR
   Internet
   subgraph Proxmox
     subgraph Hypervisor[Host OS]
+      hostanchor[ ]:::empty
       Gitea[Git server]
       Wireguard[Wireguard server]
+      subgraph Network [Network interfaces]
+        ethernet(ethernet)
+        vmbr0(vmbr0)
+        vmbr1(vmbr1)
+      end
     end
-    subgraph Network [Network interfaces]
-      ethernet(ethernet)
-      vmbr0(vmbr0)
-      vmbr1(vmbr1)
-    end
-    vmbranchor[ ]:::empty
     subgraph Nodes [VM Nodes]
+        vmbranchor[ ]:::empty
       subgraph k8s [Kubernetes Cluster]
         direction LR
         subgraph Control [Control plane]
@@ -39,10 +40,8 @@ graph LR
 
   Internet eth0@=== ethernet eth1@=== vmbr0
   vmbr0 net0@=== vmbr1
-  vmbr0 net1@=== Hypervisor
+  vmbr0 net1@=== hostanchor
   
-  
-  vmbr1 net2@=== Hypervisor
   vmbr1 net3@=== vmbranchor
   
   vmbranchor net4@=== Sun
@@ -54,6 +53,8 @@ graph LR
   vmbranchor net9@=== beta
   vmbranchor net10@=== gamma 
 
+  hostanchor net11@=== Gitea
+  hostanchor net12@=== Wireguard
   
   Sun calico0@=== k8sanchor
   k8sanchor calico1@=== Mercury
@@ -62,14 +63,14 @@ graph LR
 
 
   %%% Style %%%
-  Internet@{ shape: cloud}
+  Internet@{ shape: cloud }
   classDef empty width: 0
   classDef duplex stroke-dasharray: 50, stroke-dashoffset: 250, animation: dash 3s linear infinite alternate;
   classDef calico stroke-dasharray: 5, stroke-dashoffset: 50, animation: dash 0.5s linear infinite alternate;
   classDef vmbr stroke-dasharray: 40, stroke-dashoffset: 500, animation: dash 5s linear infinite alternate;  
   class eth0,eth1,eth2 duplex
   class calico0,calico1,calico2,calico3 calico
-  class net0,net1,net2,net3,net4,net5,net6,net7,net8,net9,net10 vmbr
+  class net0,net1,net2,net3,net4,net5,net6,net7,net8,net9,net10,net11,net12,net13 vmbr
 ```
 
 # Prerequisite

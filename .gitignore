@@ -1,11 +1,25 @@
+# Terraform
+.terraform
 *.tfvars
-
+*.tfstate
 *.lock.hcl
 
+# Environment variables
 .env*
 
-.terraform
-
-*.tfstate
-
+# Backup
 *.backup
+
+# Certificate
+*.pem
+*.key
+*.crt
+
+# Log
+*.log
+
+# Backup
+*.bak
+
+# Temp
+*.tmp
