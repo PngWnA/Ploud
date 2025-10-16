@@ -27,3 +27,7 @@
 # WireGuard
 wg0.conf
 wg0.json
+
+# Service
+gitea
+postgres

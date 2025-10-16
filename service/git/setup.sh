@@ -1,0 +1,1 @@
+mkdir gitea postgres
