@@ -12,7 +12,7 @@ resource proxmox_virtual_environment_vm cluster {
   }
 
   memory {
-    dedicated = 8192
+    dedicated = 4096
   }
 
   disk {

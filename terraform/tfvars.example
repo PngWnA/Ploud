@@ -1,0 +1,9 @@
+proxmox_api_endpoint = 
+proxmox_api_token = 
+pm_node =  
+template_id =  
+image_storage =  
+data_storage =  
+vm_storage =  
+vm_network_bridge =  
+ssh_pubkey =  
