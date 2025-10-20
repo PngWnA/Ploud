@@ -83,3 +83,6 @@ graph LR
 
 # Milestone
 * Someday we have to implement HA on this blueprint.
+
+# Note
+* [Proxmox root user should use `bash` as default shell](https://github.com/bpg/terraform-provider-proxmox/issues/1251)

@@ -2,7 +2,7 @@ pveum user add terraform@pve
 
 PRIVS_REALM="Realm.AllocateUser,Realm.Allocate"
 PRIVS_SYS="Sys.Console,Sys.Audit,Sys.AccessNetwork,Sys.Incoming,Sys.Modify,Sys.Syslog,Sys.PowerMgmt"
-PRIVS_VM="VM.Audit,VM.PowerMgmt,VM.Config.Cloudinit,VM.Config.Memory,VM.Allocate,VM.Console,VM.Clone,VM.Backup,VM.Snapshot,VM.Config.Network,VM.Snapshot.Rollback,VM.Config.Disk,VM.Config.CPU,VM.Config.CDROM,VM.Migrate,VM.Config.Options,VM.Config.HWType"
+PRIVS_VM="VM.Audit,VM.PowerMgmt,VM.Config.Cloudinit,VM.Config.Memory,VM.Allocate,VM.Console,VM.Clone,VM.Backup,VM.Snapshot,VM.Config.Network,VM.Snapshot.Rollback,VM.Config.Disk,VM.Config.CPU,VM.Config.CDROM,VM.Migrate,VM.Config.Options,VM.Config.HWType,VM.GuestAgent.Unrestricted"
 PRIVS_POOL="Pool.Allocate,Pool.Audit"
 PRIVS_SDN="SDN.Audit,SDN.Use,SDN.Allocate"
 PRIVS_MAPPING="Mapping.Modify,Mapping.Use,Mapping.Audit"
