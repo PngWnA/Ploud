@@ -28,7 +28,7 @@ resource proxmox_virtual_environment_vm cluster {
   }
 
   agent {
-    enabled = true
+    enabled = false
   }
 
   initialization {

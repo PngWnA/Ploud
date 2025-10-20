@@ -3,7 +3,7 @@
   timezone: Asia/Seoul
   users:
     - default
-    - name: celestrial
+    - name: celestial
       groups:
         - sudo
       shell: /bin/bash
